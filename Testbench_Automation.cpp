@@ -30,7 +30,7 @@ public:
     testbench(string nomedomodulo) 
     {
         NomeDoModulo = nomedomodulo;
-        Arquivo.open(NomeDoModulo+"_tb.v", ios::out);
+        Arquivo.open("Output/"+NomeDoModulo + "_tb.v", ios::out);
         Arquivo << "Iniciando.." << endl;
      }
 
@@ -80,7 +80,7 @@ public:
         {
             DualRailNumber[i + 1] = (SingleRailNumber >> i) / 1;
             DualRailNumber[i] = !DualRailNumber[i + 1];
-            auxiliar=auxiliar+DualRailNumber[i + 1]+ DualRailNumber[i];
+            auxiliar+= DualRailNumber[i + 1]+ DualRailNumber[i];
         }
         return auxiliar;
     }
@@ -101,9 +101,9 @@ public:
         Arquivo << "\n\n\t//Estímulo: a="<<Estimulos.a<<", b="<<Estimulos.b <<", opr="<<Estimulos.opr << endl;
         Arquivo << "\t//Saída desejada: Soma=" << Estimulos.soma << ", Neg=" << Estimulos.neg;
         Arquivo << ", Zero=" << Estimulos.zero << ", OF=" << Estimulos.of << endl;
-        Arquivo << "\ta = 8'b" << dualRailConverter(a, 4) << "; " << endl;
-        Arquivo << "\tb = 8'b" << dualRailConverter(b, 4) << "; " << endl;
-        Arquivo << "\topr = 2'b" << dualRailConverter(opr, 1) << "; " << endl;
+        Arquivo << "\ta = 8'b" << dualRailConverter(Estimulos.a, 4) << "; " << endl;
+        Arquivo << "\tb = 8'b" << dualRailConverter(Estimulos.b, 4) << "; " << endl;
+        Arquivo << "\topr = 2'b" << dualRailConverter(Estimulos.opr, 1) << "; " << endl;
         Arquivo << "\tack_in = 1;" << endl;
         Arquivo << "\t  #1;" << endl;
     }
